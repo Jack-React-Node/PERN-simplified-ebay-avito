@@ -3,16 +3,13 @@ import { Outlet } from "react-router-dom";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Banner from "./components/Banner";
 import SiteBarEditor from "./components/SiteBarEditor";
 
 const LayoutAdmin = () => {
     return (
         <div>
              
-      <Header >
-        
-      </Header >
+      <Header />
       <div className="container ">
     
 

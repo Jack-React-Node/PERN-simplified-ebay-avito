@@ -1,0 +1,11 @@
+React:
+    - JSX
+        - variable
+        - attribute
+        - events
+        - map
+    - State
+        - event.target.value
+        - default
+    - Structure (array, object)
+    - 

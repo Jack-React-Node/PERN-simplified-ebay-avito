@@ -15,5 +15,6 @@
                          - /category/:category         post      |    done
                          - /change/:id                 post      |    
 
-
+               - /base
+                         - /contacts                   get       |
 

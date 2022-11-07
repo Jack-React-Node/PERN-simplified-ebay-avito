@@ -12,28 +12,15 @@ export default function  Layout(){
 
     return ( <>
     <Preloader />
-      <Header >
-        
-      </Header >
- 
-      <NavBar>
-       
-      </NavBar>
+      <Header />
+       <NavBar />
       <div className="container col-2">
-    
         <Banner />
-
-
-
-
         <div className="row">
         <SiteBar />
         <Outlet />
         </div>
         </div>
-        
-
-
     <Footer />
     <ModalBar />
 

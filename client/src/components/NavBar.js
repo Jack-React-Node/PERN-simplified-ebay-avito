@@ -11,12 +11,12 @@ export default function  NavBar(){
                     </div>
                     <div className="navbar-collapse">
                         <ul className="main-navigation">
-                            <li><a href=""    className="parent"  >Главная</a> </li>
-                            <li><a href=""   className="parent"  >Красота</a> </li>
-                            <li><a href=""   className="parent"  >Здоровье</a> </li>
-                            <li><a href=""   className="parent"  >Развлечение</a> </li>
-                            <li><a href=""   className="parent"  >Культура</a> </li>
-                            <li><a href=""   className="parent"  >Контакты</a> </li>
+                            <li><a href="/"    className="parent"  >Главная</a> </li>
+                            <li><a href="/"   className="parent"  >Красота</a> </li>
+                            <li><a href="/"   className="parent"  >Здоровье</a> </li>
+                            <li><a href="/"   className="parent"  >Развлечение</a> </li>
+                            <li><a href="/"   className="parent"  >Культура</a> </li>
+                            <li><a href="/contacts"   className="parent"  >Контакты</a> </li>
                             
                         </ul>
                     </div>

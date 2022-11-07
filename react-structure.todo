@@ -1,0 +1,14 @@
+App:
+    Роутинг:
+        - `react-router-dom`
+    Реакт:
+        - useContent
+        - useEffect
+    Получение данных с сервера: 
+        - axios
+        - fetch
+    Декодирование:
+        - jwt-decode
+    MObx:
+        - mobx": "^6.0.5",
+        - mobx-react-lite
