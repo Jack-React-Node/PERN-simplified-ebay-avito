@@ -11,18 +11,18 @@ import ModalBar from './components/modal/ModalBar';
 export default function  Layout(){
 
     return ( <>
-    <Preloader />
-      <Header />
-       <NavBar />
-      <div className="container col-2">
-        <Banner />
-        <div className="row">
-        <SiteBar />
-        <Outlet />
-        </div>
-        </div>
-    <Footer />
-    <ModalBar />
+      <Preloader />
+        <Header />
+          <NavBar />
+        <div className="container col-2">
+          <Banner />
+          <div className="row">
+          <SiteBar />
+          <Outlet />
+          </div>
+          </div>
+      <Footer />
+      <ModalBar />
 
     </>);
 }

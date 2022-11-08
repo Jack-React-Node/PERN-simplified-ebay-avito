@@ -8,25 +8,14 @@ import SiteBarEditor from "./components/SiteBarEditor";
 const LayoutAdmin = () => {
     return (
         <div>
-             
-      <Header />
-      <div className="container ">
-    
-
-
-
-
-
-    <div className="row">
-    <SiteBarEditor />
-<Outlet />
-    </div>
-    </div>
-      
-        
-
-
-    <Footer />
+        <Header />
+        <div className="container ">
+        <div className="row">
+        <SiteBarEditor />
+        <Outlet />
+        </div>
+        </div>
+        <Footer />
         </div>
     );
 };
