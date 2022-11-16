@@ -16,7 +16,7 @@ class DeviceController {
      * 
      */
     
-    async homePage(req, res, next) {
+    async homePage(req, res, next) { // Done
      try {
         let created = await Device.findAll({
             order: [['createdAt', 'DESC']], // DESC -> from hight to low
@@ -40,7 +40,7 @@ class DeviceController {
 
     
     
-    /* POST: - http://localhost:5000/api/device/create-device/:userId      
+    /* POST: - http://localhost:5000/api/device/create-device/      
      * 
      * @param req.body      |   <form_input>        ->  1   
      *        req.file      |   <form_input_file>   ->  1
@@ -54,11 +54,12 @@ class DeviceController {
     async create(req, res, next) {
         try {
             const {name, price, old_price, sale, category} = req.body;
-            const userId = req.user.id;
-            const {img} = req.files;
-            const fileName = uuid.v4() + ".jpg"
-            img.mv(path.resolve(__dirname, '..', 'static', fileName))
-            const device = await Device.create({name, price, old_price, sale, category, userId, img: fileName});
+            // const userId = req.user.id;
+            // const {img} = req.files;
+            // const fileName = uuid.v4() + ".jpg"
+            // img.mv(path.resolve(__dirname, '..', 'static', fileName))
+            const img = 'fjgkdkdlcj';
+            const device = await Device.create({name, price, old_price, sale, category, img});
 
             return res.json(device)
         } catch (e) {

@@ -13,7 +13,7 @@ router.post('/category/:category', deviceController.getAll)
 
 
 // USER's ROUTES
-router.post('/create-device/', authMiddleware, deviceController.create)
+router.post('/create-device/', deviceController.create)
 router.get('/del/:id/', authMiddleware, deviceController.delete)
 router.get('/user-devices/', authMiddleware, deviceController.deviceListUser)
 router.post('/change/:id/', authMiddleware, deviceController.change) 
