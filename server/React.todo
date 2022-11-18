@@ -1,0 +1,16 @@
+Server:
+    - NPM packages:
+        - postgreSQL
+            - pgAdmin
+        - sequalize
+        - 
+            - `cors`
+            - `dotenv`
+            - `uuid`
+            - `nodemon`
+            -
+                - `bcrypt`
+                - jsonwebtoken
+    - Parts:
+        - `ApiErrors`
+

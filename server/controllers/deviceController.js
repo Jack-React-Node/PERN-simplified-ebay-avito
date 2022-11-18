@@ -38,7 +38,70 @@ class DeviceController {
 
     }
 
+
+        /* GET: - http://localhost:5000/api/device/device-view/:id 
+     * 
+     * @param req.body      |   <form_input>        ->  0
+     *        req.file      |   <form_input_file>   ->  0
+     * @param req.params    |   /:id                ->  1
+     * @param req.query     |   /?param=1&          ->  0
+     * 
+     * @return (json) 
+     * 
+     */
+
+        async getOne(req, res) {
+           try{
+            const {id} = req.params
+            console.log(id);
+            
+            const device = await Device.findOne(
+                {
+                    where: {id: id}
+                }
+            )
+            return res.json(device)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+        }
+
+
+        /* POST: - http://localhost:5000/api/category/:category:offset   
+     * 
+     * @param req.body      |   <form_input>        ->  1
+     *        req.file      |   <form_input_file>   ->  0
+     * @param req.params    |   /:id                ->  1
+     * @param req.query     |   /?param=1&          ->  0
+     * 
+     * @return (json) 
+     * 
+     */
     
+        async getAll(req, res) {
+           try{
+           const {order} = req.body;
+            const {category, offset} = req.params;
+            
+            const devices = await Device.findAll({
+                where: {category: category},
+                order: [[order, 'DESC']], // DESC -> from hight to low
+                offset: offset,
+                limit: 8
+            });
+    
+     
+            return res.json(devices)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+        }
+
+    
+
+// ################################# CLOSED:
+
+
     
     /* POST: - http://localhost:5000/api/device/create-device/      
      * 
@@ -54,12 +117,11 @@ class DeviceController {
     async create(req, res, next) {
         try {
             const {name, price, old_price, sale, category} = req.body;
-            // const userId = req.user.id;
-            // const {img} = req.files;
-            // const fileName = uuid.v4() + ".jpg"
-            // img.mv(path.resolve(__dirname, '..', 'static', fileName))
-            const img = 'fjgkdkdlcj';
-            const device = await Device.create({name, price, old_price, sale, category, img});
+            const userId = req.user.id;
+            const {img} = req.files;
+            const fileName = uuid.v4() + ".jpg"
+            img.mv(path.resolve(__dirname, '..', 'static', fileName))
+            const device = await Device.create({name, price, old_price, sale, category, userId, img: fileName});
 
             return res.json(device)
         } catch (e) {
@@ -68,54 +130,10 @@ class DeviceController {
 
     }
 
-    /* POST: - http://localhost:5000/api/category/:category   
-     * 
-     * @param req.body      |   <form_input>        ->  1
-     *        req.file      |   <form_input_file>   ->  0
-     * @param req.params    |   /:id                ->  1
-     * @param req.query     |   /?param=1&          ->  0
-     * 
-     * @return (json) 
-     * 
-     */
-    
-    async getAll(req, res) {
-        const {order} = req.body;
-        const {category} = req.params;
-        
-        const devices = await Device.findAll({
-            where: {category: category},
-            order: [[order, 'DESC']], // DESC -> from hight to low
-        });
-
- 
-        return res.json(devices)
-    }
 
 
 
-    /* GET: - http://localhost:5000/api/device/device-view/:id 
-     * 
-     * @param req.body      |   <form_input>        ->  0
-     *        req.file      |   <form_input_file>   ->  0
-     * @param req.params    |   /:id                ->  1
-     * @param req.query     |   /?param=1&          ->  0
-     * 
-     * @return (json) 
-     * 
-     */
 
-    async getOne(req, res) {
-        const {id} = req.params
-        console.log(id);
-        
-        const device = await Device.findOne(
-            {
-                where: {id: id}
-            }
-        )
-        return res.json(device)
-    }
 
     /* GET: - http://localhost:5000/api/device/del/:id 
      * 
@@ -129,6 +147,7 @@ class DeviceController {
      */ 
 
     async delete(req, res) {
+        try{  
         const {id} = req.params;
         
         
@@ -138,6 +157,9 @@ class DeviceController {
             }
         )
         return res.json(device)
+    } catch (e) {
+        next(ApiError.badRequest(e.message))
+    }
     }
     
     /* GET: - http://localhost:5000/api/user-devices/
@@ -152,6 +174,7 @@ class DeviceController {
      */
 
     async deviceListUser(req, res) {
+        try{
         const userId = req.user.id;
         
         
@@ -161,6 +184,9 @@ class DeviceController {
         });
 
         return res.json(devices)
+    } catch (e) {
+        next(ApiError.badRequest(e.message))
+    }
     }
 
 
@@ -176,6 +202,7 @@ class DeviceController {
      */
 // TODO - to finish this method
     async change(req, res) {
+        try{
         const id = req.params;
         const {name, price, old_price, sale, category} = req.body;
         const userId = req.user.id;
@@ -187,6 +214,9 @@ class DeviceController {
 
     
         return res.json(devices)
+    } catch (e) {
+        next(ApiError.badRequest(e.message))
+    }
     }
 
 }
