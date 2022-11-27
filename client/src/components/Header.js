@@ -46,13 +46,13 @@ export default function  Header(){
                     <div className="col-sm-4 col-xs-6 header-right">
                         
                         <div id="search" className="input-group">
-                        <form action="" method="post">
+                        {/* <form action="" method="post">
                             
                             <input type="text" name="search" value="" placeholder="Поиск услуги" className="form-control input-lg" />
                             <span className="input-group-btn">
                             <button type="submit" className="btn btn-default btn-lg"><i className="fa fa-search"></i></button>
                             </span> 
-                        </form>
+                        </form> */}
                         </div>
                     </div>
                 </div>

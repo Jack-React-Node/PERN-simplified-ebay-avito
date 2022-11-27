@@ -22,7 +22,7 @@ const ProductsList = () => {
                 <div className="sort-inner">
                     
                   
-                  <form action="" id="myForm" method="post" style={{position: 'relative'}}>
+                  {/* <form action="" id="myForm" method="post" style={{position: 'relative'}}>
                   
                 <select id="input-sort" className="form-control" name="wjs">
                   <option value="2" >Дата (Убывание)</option>
@@ -31,7 +31,7 @@ const ProductsList = () => {
                   <option value="4" >Цена (Убывание)</option>
                 </select>
                 <button type="submit" style="position: absolute; top: 3px; left: 103%;">Выбрать</button>
-              </form>
+              </form> */}
 
                 </div>
               </div>

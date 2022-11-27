@@ -10,7 +10,7 @@ const AdminChange = () => {
             
             <h3 style={{color: 'crimson'}}> ???? </h3>
             
-            <form action="" method="post" enctype="multipart/form-data">
+            {/* <form action="" method="post" enctype="multipart/form-data">
                 
                     <legend>Введите данные по примеру</legend>
                     <div className="form-group required">
@@ -78,7 +78,7 @@ const AdminChange = () => {
                         <input type="submit" className="btn btn-primary" value="Отправить"/>
                     </div>
                 </div>
-            </form>
+            </form> */}
         </div>
 
         </>

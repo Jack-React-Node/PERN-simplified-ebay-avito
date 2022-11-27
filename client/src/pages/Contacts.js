@@ -21,7 +21,7 @@ const Contacts = () => {
 
                   <div className="col-sm-9 rigt">
                       <p>???</p>
-        <form action="" className="form-horizontal" method="post" enctype="multipart/form-data">
+        {/* <form action="" className="form-horizontal" method="post" enctype="multipart/form-data">
                 <div className="form-group required">
                   <label for="input-name" className="col-sm-2 control-label">Имя</label>
                   <div className="col-sm-10">
@@ -48,7 +48,7 @@ const Contacts = () => {
                 </div>
             </div>
       
-    </form>
+    </form> */}
                   </div>
                 </div>
               </div>

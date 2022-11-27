@@ -5,7 +5,6 @@
                          - /login                      post
                          - /logout                     post
                          - /auth                       det
-
                - /device
                          - /                           get       |    done
                          - /user-devices/:userId       get       |    
@@ -15,6 +14,6 @@
                          - /category/:category         post      |    done
                          - /change/:id                 post      |    
 
-               - /base
-                         - /contacts                   get       |
+2) Client:
+               - /contacts                   get       |
 

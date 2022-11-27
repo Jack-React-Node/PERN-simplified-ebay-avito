@@ -13,7 +13,7 @@ router.post('/category/:category:offset', deviceController.getAll)
 
 
 // Closed  
-router.post('/create-device/', authMiddleware, deviceController.create)
+router.post('/create-device/', deviceController.create)
 router.get('/del/:id/', authMiddleware, deviceController.delete)
 router.get('/user-devices/', authMiddleware, deviceController.deviceListUser)
 router.post('/change/:id/', authMiddleware, deviceController.change) 
