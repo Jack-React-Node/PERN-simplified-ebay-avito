@@ -1,17 +1,35 @@
 import React from 'react';
+import Carousel from 'react-bootstrap/Carousel';
 
 const Banner = () => {
     return (
+        
+
+               
         <>
-            <div className="row">
-        <div className="col-md-12">
-            <div id="main-banner" className="owl-carousel home-slider">
-                <div className="item"> <a href="#"><img src="image/banners/Main-Banner1.jpg" alt="main-banner1" className="img-responsive" /></a> </div>
-                <div className="item"> <a href="#"><img src="image/banners/Main-Banner2.jpg" alt="main-banner2" className="img-responsive" /></a> </div>
-                <div className="item"> <a href="#"><img src="image/banners/Main-Banner3.jpg" alt="main-banner3" className="img-responsive" /></a> </div>
-            </div>
-        </div>
-    </div>
+            <Carousel>
+                <Carousel.Item>
+                    <img
+                    className="d-block w-100"
+                    src="image/banners/Main-Banner1.jpg"
+                    alt="First slide"
+                    />
+                </Carousel.Item>
+                <Carousel.Item>
+                    <img
+                    className="d-block w-100"
+                    src="image/banners/Main-Banner2.jpg"
+                    alt="Second slide"
+                    />
+                </Carousel.Item>
+                <Carousel.Item>
+                    <img
+                    className="d-block w-100"
+                    src="image/banners/Main-Banner3.jpg"
+                    alt="Third slide"
+                    />
+                </Carousel.Item>
+            </Carousel>
         </>
     );
 };

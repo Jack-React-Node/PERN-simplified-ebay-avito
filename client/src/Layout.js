@@ -7,22 +7,28 @@ import NavBar from "./components/NavBar";
 import SiteBar from "./components/SiteBar";
 import Preloader from './components/modal/Preloader';
 import ModalBar from './components/modal/ModalBar';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 
 export default function  Layout(){
 
     return ( <>
-      <Preloader />
-        <Header />
-          <NavBar />
-        <div className="container col-2">
-          <Banner />
-          <div className="row">
-          <SiteBar />
-          <Outlet />
-          </div>
-          </div>
-      <Footer />
-      <ModalBar />
+            <Preloader />
+            <Header />
+            <Container>
+             
+                <Banner />
+                  <NavBar />
+                  
+                  <Row>
+                    <SiteBar />
+                    <Outlet />
+                  </Row>
+                  
+                  
+            </Container>
+              <Footer />
+            <ModalBar />
 
     </>);
 }

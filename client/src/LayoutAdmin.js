@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import SiteBarEditor from "./components/SiteBarEditor";
+import SiteBar from "./components/SiteBar";
 
 const LayoutAdmin = () => {
     return (
@@ -11,7 +11,7 @@ const LayoutAdmin = () => {
         <Header />
         <div className="container ">
         <div className="row">
-        <SiteBarEditor />
+        <SiteBar />
         <Outlet />
         </div>
         </div>
