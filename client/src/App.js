@@ -12,8 +12,6 @@ import Home from "./pages/Home";
 import ProductView from "./pages/ProductView";
 import ProductsList from "./pages/ProductsList";
 import Empty from "./pages/Empty";
-import LayoutExample from "./LayoutExample";
-import Input from "./pages/ex/Input"
 
 function App() {
   
@@ -34,11 +32,6 @@ function App() {
               <Route path="change-product/:id" element={<AdminChange />} />
               {/* <Route path="/add-product" element={<AdminAdd />} /> */}
           </Route>
-          <Route path="/ex" element={<LayoutExample />}>
-              <Route index element={<Input />} />
-              {/* <Route path="change-product/:id" element={<AdminChange />} /> */}
-          </Route>
-
       </Routes>
       
     </BrowserRouter>

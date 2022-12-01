@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import axios from '../http/Axios';
-// import Spinner from 'react-bootstrap/Spinner';
+import Spinner from 'react-bootstrap/Spinner';
 // import Button from 'react-bootstrap/Button';
 // import 'bootstrap/dist/css/bootstrap.css';
 import Container from 'react-bootstrap/Container';
@@ -26,10 +26,10 @@ export default function  Home(){
 
     useEffect(() => {
         m1().then(data => setGoods(data)).catch(e => console.log(e.message));
-     if(goods) console.log(goods);
+    //  if(goods) console.log(goods);
     }, [])
 
-if(!goods) return <p>g</p>;
+if(!goods) return <Spinner animation="border" className='mt-5 ml-5' />;
 
 
     return ( <>
@@ -39,13 +39,13 @@ if(!goods) return <p>g</p>;
                     <Container fluid>
                         <Row>
                             {goods.created.map((prop, index) => {
-                            return  <Col key={index}>
+                            return  <Col key={index} md={4}>
                                         <Card style={{ width: '100%' }}>
-                                        <Card.Img variant="top" src="holder.js/100px180" />
+                                        <Card.Img variant="top" src="http://localhost:5000/0c80d66c-3e86-402d-92f4-14f4a0d5d8c7.jpg" />
                                         <Card.Body>
                                             <Card.Title>{prop.name}</Card.Title>
                                             <Card.Text>
-                                            {prop.sale + prop.img}
+                                            {prop.sale}
                                             </Card.Text>
                                             <Button variant="primary">Go somewhere</Button>
                                         </Card.Body>
@@ -56,8 +56,11 @@ if(!goods) return <p>g</p>;
                     </Container>
                 </Tab>
                 <Tab eventKey="profile" title="Дешевле">
+                <Container fluid>
+                        <Row>
                 {goods.price.map((prop, index) => {
-                    return  <Card style={{ width: '18rem' }} key={index}>
+                    return  <Col key={index} md={4}>
+                        <Card  >
                             <Card.Img variant="top" src="holder.js/100px180" />
                             <Card.Body>
                                 <Card.Title>{prop.name}</Card.Title>
@@ -67,11 +70,17 @@ if(!goods) return <p>g</p>;
                                 <Button variant="primary">Go somewhere</Button>
                             </Card.Body>
                             </Card>
+                      </Col>    
                         })}
+                         </Row>
+                    </Container>
                 </Tab>
                 <Tab eventKey="contact" title="Скидка" >
+                <Container fluid>
+                        <Row>
                     {goods.sale.map((prop, index) => {
-                    return  <Card style={{ width: '18rem' }} key={index}>
+                    return  <Col key={index} md={4}>
+                            <Card  >
                             <Card.Img variant="top" src="holder.js/100px180" />
                             <Card.Body>
                                 <Card.Title>{prop.name}</Card.Title>
@@ -81,7 +90,10 @@ if(!goods) return <p>g</p>;
                                 <Button variant="primary">Go somewhere</Button>
                             </Card.Body>
                             </Card>
+                            </Col>
                         })}
+                         </Row>
+                    </Container>
                 </Tab>
         </Tabs>
 

@@ -6,9 +6,9 @@ import Banner from "./components/Banner";
 import NavBar from "./components/NavBar";
 import SiteBar from "./components/SiteBar";
 import Preloader from './components/modal/Preloader';
-import ModalBar from './components/modal/ModalBar';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
+import ModalPage from './components/modal/ModalPage';
 
 export default function  Layout(){
 
@@ -28,7 +28,7 @@ export default function  Layout(){
                   
             </Container>
               <Footer />
-            <ModalBar />
+              <ModalPage />
 
     </>);
 }
