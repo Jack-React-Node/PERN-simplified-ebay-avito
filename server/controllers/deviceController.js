@@ -117,12 +117,12 @@ class DeviceController {
     async create(req, res, next) {
         try {
             const {name, price, old_price, sale, category} = req.body;
-            const userId = 221;
-            const {img} = req.files;
+            const userId = 1;
+            const img = req.files.img;
             const fileName = uuid.v4() + ".jpg"
             img.mv(path.resolve(__dirname, '..', 'static', fileName))
             const device = await Device.create({name, price, old_price, sale, category, userId, img: fileName});
-
+            
             return res.json(device)
             
         } catch (e) {

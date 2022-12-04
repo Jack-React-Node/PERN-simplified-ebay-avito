@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Layout from './Layout';
 import LayoutAdmin from "./LayoutAdmin";
-// import AdminAdd from "./pages/AdminAdd";
+import AdminAdd from "./pages/AdminAdd";
 import AdminChange from "./pages/AdminChange";
 import AdminPanel from "./pages/AdminPanel";
 import Contacts from "./pages/Contacts";
@@ -27,10 +27,10 @@ function App() {
               <Route path="contacts" element={<Contacts />} />
               <Route path="*" element={<Empty />} />
             </Route>
-          <Route path="/admin" element={<LayoutAdmin />}>
+          <Route path="admin" element={<LayoutAdmin />}>
               <Route index element={<AdminPanel />} />
               <Route path="change-product/:id" element={<AdminChange />} />
-              {/* <Route path="/add-product" element={<AdminAdd />} /> */}
+              <Route path="add-product" element={<AdminAdd />} />
           </Route>
       </Routes>
       

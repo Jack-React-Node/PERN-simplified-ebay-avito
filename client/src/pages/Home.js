@@ -39,9 +39,9 @@ if(!goods) return <Spinner animation="border" className='mt-5 ml-5' />;
                     <Container fluid>
                         <Row>
                             {goods.created.map((prop, index) => {
-                            return  <Col key={index} md={4}>
+                            return  <Col key={index} md={3}>
                                         <Card style={{ width: '100%' }}>
-                                        <Card.Img variant="top" src="http://localhost:5000/0c80d66c-3e86-402d-92f4-14f4a0d5d8c7.jpg" />
+                                        <Card.Img variant="top" src={`http://localhost:5000/${prop.img}`} />
                                         <Card.Body>
                                             <Card.Title>{prop.name}</Card.Title>
                                             <Card.Text>
