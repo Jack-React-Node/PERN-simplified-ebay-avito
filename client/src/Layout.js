@@ -8,7 +8,10 @@ import SiteBar from "./components/SiteBar";
 import Preloader from './components/modal/Preloader';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import ModalPage from './components/modal/ModalPage';
+import LoginPage from './components/modal/LoginPage';
+import RegPage from './components/modal/RegPage';
+
+
 
 export default function  Layout(){
 
@@ -28,7 +31,8 @@ export default function  Layout(){
                   
             </Container>
               <Footer />
-              <ModalPage />
+              <LoginPage />
+              <RegPage />
 
     </>);
 }

@@ -1,6 +1,8 @@
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React, {useContext, useEffect, useState} from 'react';
+import {Context} from "./index";
 
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {observer} from "mobx-react-lite";
 
 import Layout from './Layout';
 import LayoutAdmin from "./LayoutAdmin";
@@ -13,8 +15,23 @@ import ProductView from "./pages/ProductView";
 import ProductsList from "./pages/ProductsList";
 import Empty from "./pages/Empty";
 
-function App() {
-  
+import {check} from "./http/userAPI";
+import {Spinner} from "react-bootstrap";
+
+const App = observer(() => {
+    const {user} = useContext(Context)
+    const [loading, setLoading] = useState(true)
+
+    // useEffect(() => {
+    //     check().then(data => {
+    //         user.setUser(true)
+    //         user.setIsAuth(true)
+    //     }).finally(() => setLoading(false))
+    // }, [])
+
+    // if (loading) {
+    //     return <Spinner animation={"grow"}/>
+    // }
   return (
     <div className="App">
     
@@ -40,6 +57,6 @@ function App() {
       
     </div>
   );
-}
+});
 
 export default App;

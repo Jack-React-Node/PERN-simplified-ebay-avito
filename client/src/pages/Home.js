@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import axios from '../http/Axios';
+import { fetchHomeDevices } from '../http/deviceAPI'
 import Spinner from 'react-bootstrap/Spinner';
 // import Button from 'react-bootstrap/Button';
 // import 'bootstrap/dist/css/bootstrap.css';
@@ -15,17 +15,8 @@ import Card from 'react-bootstrap/Card';
 export default function  Home(){
         const [goods, setGoods] = useState();
 
-
- 
-    const m1 = async () => {
-        const {data}= await axios.get('/device/');
-        return data;
-    }
-
-
-
     useEffect(() => {
-        m1().then(data => setGoods(data)).catch(e => console.log(e.message));
+        fetchHomeDevices().then(data => setGoods(data)).catch(e => console.log(e.message));
     //  if(goods) console.log(goods);
     }, [])
 

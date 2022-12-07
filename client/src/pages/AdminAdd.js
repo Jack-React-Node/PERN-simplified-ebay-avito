@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import axios from '../http/Axios';
+import { createItem } from '../http/deviceAPI'
 // import Axios from 'axios';
 // import FormData from 'form-data';
 
@@ -24,7 +24,7 @@ const AdminAdd = () => {
             formData.append('category', category)
             formData.append('sale', `${sale}`)
             // axios.post('device/create-device/', formData).then(data => console.log(444))
-            axios.post('/device/create-device', formData)
+            createItem(formData)
               .then(data => {
             
                 alert('Объявление успешно создано!');

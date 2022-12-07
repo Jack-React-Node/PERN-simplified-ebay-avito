@@ -6,9 +6,13 @@ import Nav from 'react-bootstrap/Nav';
 
 export default function  Header(){
 
-    const {device} = useContext(Context)
-    const showModal = () => {
-        device.setModal(true);
+    const {helpers} = useContext(Context)
+
+    const showModalLogin = () => {
+        helpers.setModalLogin(true);
+    }
+    const showModalRegistration = () => {
+        helpers.setModalRegistration(true);
     }
 
     return (
@@ -18,10 +22,10 @@ export default function  Header(){
                 onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
             >
                 <Nav.Item>
-                <Nav.Link onClick={showModal} >Вход</Nav.Link>
+                <Nav.Link onClick={showModalLogin} >Вход</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                <Nav.Link eventKey="link-1">Регистрация</Nav.Link>
+                <Nav.Link onClick={showModalRegistration} >Регистрация</Nav.Link>
                 </Nav.Item>
             </Nav>
       </Container>
