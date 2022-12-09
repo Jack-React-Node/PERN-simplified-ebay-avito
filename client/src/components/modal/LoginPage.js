@@ -10,7 +10,7 @@ import { login } from '../../http/userAPI'
 
 const LoginPage = observer(() => {
 
-  const {helpers} = useContext(Context)
+  const {helpers, user} = useContext(Context)
   const show = helpers.modalLogin;
   const [mail, setMail] = useState('')
   const [password, setPassword] = useState('')
@@ -24,6 +24,7 @@ const hideModal = () => {
       alert('success!');
       
       helpers.setModalLogin(false)
+      user.setIsAuth(true)
     })
     
   }

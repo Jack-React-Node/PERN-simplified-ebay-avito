@@ -16,7 +16,7 @@ import RegPage from './components/modal/RegPage';
 export default function  Layout(){
 
     return ( <>
-            <Preloader />
+            {/* <Preloader /> */}
             <Header />
             <Container>
              

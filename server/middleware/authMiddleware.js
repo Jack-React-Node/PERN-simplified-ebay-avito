@@ -2,23 +2,24 @@
 const jwt = require('jsonwebtoken')
 
 module.exports = function (req, res, next) {
-    // return res.json(req.headers)
+    // return res.status(401).json(req.headers)
     if (req.method === "OPTIONS") {
         next()
     }
+
     try {
-        const token = req.headers.authorization// 
-        // return res.json({dec: token})
+        const token = req.headers.authorization.split(' ')[1] // Bearer asfasnfkajsfnjk
+        // return res.status(401).json({token})
         if (!token) {
             return res.status(401).json({message: "Не авторизован1"})
         }
-
-        const decoded = jwt.verify(token, process.env.SECRET_KEY)
         
+        const decoded = jwt.verify(token, process.env.SECRET_KEY)
+
         req.user = decoded
-        return res.json(decoded)
         next()
     } catch (e) {
-        res.status(401).json({message: "Не авторизован2"})
+        res.json({fjf: 23})
+        // res.status(401).json({message: "Не авторизован1"})
     }
 };

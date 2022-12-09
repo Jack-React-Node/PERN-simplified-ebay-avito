@@ -20,7 +20,7 @@ export default function  Home(){
     //  if(goods) console.log(goods);
     }, [])
 
-if(!goods) return <Spinner animation="border" className='mt-5 ml-5' />;
+if(!goods) return <Spinner animation="border" className='mt-5 ml-5' />
 
 
     return ( <>

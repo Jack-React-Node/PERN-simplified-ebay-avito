@@ -3,10 +3,12 @@ import {Context} from "../index";
 import Container from 'react-bootstrap/esm/Container';
 
 import Nav from 'react-bootstrap/Nav';
+import {observer} from "mobx-react-lite";
 
-export default function  Header(){
 
-    const {helpers} = useContext(Context)
+const Header = observer(() => { 
+
+    const {helpers, user} = useContext(Context)
 
     const showModalLogin = () => {
         helpers.setModalLogin(true);
@@ -14,21 +16,36 @@ export default function  Header(){
     const showModalRegistration = () => {
         helpers.setModalRegistration(true);
     }
+    const logOut = () => {
+        user.setIsAuth(false)
+        user.setUser({})
+        
+        localStorage.removeItem('token');
+    }
+ 
 
     return (
         <Container>
                 <Nav
-                activeKey="/home"
-                onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
             >
-                <Nav.Item>
-                <Nav.Link onClick={showModalLogin} >Вход</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                <Nav.Link onClick={showModalRegistration} >Регистрация</Nav.Link>
-                </Nav.Item>
+                          {user.isAuth  ? 
+                          <><Nav.Item>
+                          <Nav.Link onClick={logOut} >Выход</Nav.Link>
+                          </Nav.Item>
+                          </>
+                            :
+                          <>
+                          <Nav.Item>
+                            <Nav.Link onClick={showModalLogin} >Вход</Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item>
+                            <Nav.Link onClick={showModalRegistration} >Регистрация</Nav.Link>
+                            </Nav.Item></> }
             </Nav>
       </Container>
     );
-}
+
     
+});
+
+export default Header;
