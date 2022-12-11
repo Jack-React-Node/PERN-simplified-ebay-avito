@@ -7,7 +7,7 @@ import {observer} from "mobx-react-lite";
 import Layout from './Layout';
 import LayoutAdmin from "./LayoutAdmin";
 import AdminAdd from "./pages/AdminAdd";
-import AdminChange from "./pages/AdminChange";
+// import AdminChange from "./pages/AdminChange";
 import AdminPanel from "./pages/AdminPanel";
 import Contacts from "./pages/Contacts";
 import Home from "./pages/Home";
@@ -27,7 +27,7 @@ const App = observer(() => {
          if(!data.stop){
             user.setUser(data)
             user.setIsAuth(true)
-            console.log(123)
+            // console.log(123)
          }
         }).catch(e => console.log(e)).finally(() => setLoading(false))
     }, [])
@@ -44,13 +44,12 @@ const App = observer(() => {
           <Route path="/" element={<Layout />}>
               <Route index element={<Home />} />
               <Route path="product/:id" element={<ProductView />} />
-              <Route path="prod-list/:page" element={<ProductsList />} />
+              <Route path="prod-list/:category" element={<ProductsList />} />
               <Route path="contacts" element={<Contacts />} />
               <Route path="*" element={<Empty />} />
             </Route>
           <Route path="admin" element={<LayoutAdmin />}>
               <Route index element={<AdminPanel />} />
-              <Route path="change-product/:id" element={<AdminChange />} />
               <Route path="add-product" element={<AdminAdd />} />
           </Route>
       </Routes>

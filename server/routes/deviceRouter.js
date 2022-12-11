@@ -13,10 +13,10 @@ router.post('/category/:category:offset', deviceController.getAll)
 
 
 // Closed  
-router.post('/create-device/', deviceController.create)
-router.get('/del/:id/', authMiddleware, deviceController.delete)
+router.post('/create-device/', authMiddleware, deviceController.create)
+router.get('/delete-device/:id/', authMiddleware, deviceController.delete)
 router.get('/user-devices/', authMiddleware, deviceController.deviceListUser)
-router.post('/change/:id/', authMiddleware, deviceController.change) 
+// router.post('/change/:id/', authMiddleware, deviceController.change) 
 
 
 module.exports = router

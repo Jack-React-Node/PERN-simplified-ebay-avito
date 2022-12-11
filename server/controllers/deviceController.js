@@ -50,10 +50,10 @@ class DeviceController {
      * 
      */
 
-        async getOne(req, res) {
+        async getOne(req, res, next) {
            try{
             const {id} = req.params
-            console.log(id);
+            // console.log(id);
             
             const device = await Device.findOne(
                 {
@@ -81,13 +81,14 @@ class DeviceController {
         async getAll(req, res) {
            try{
            const {order} = req.body;
-            const {category, offset} = req.params;
+            const {category, page, limit} = req.params;
+            const offset = page * limit;
             
             const devices = await Device.findAll({
                 where: {category: category},
                 order: [[order, 'DESC']], // DESC -> from hight to low
                 offset: offset,
-                limit: 8
+                limit: limit
             });
     
      
@@ -117,7 +118,7 @@ class DeviceController {
     async create(req, res, next) {
         try {
             const {name, price, old_price, sale, category} = req.body;
-            const userId = 1;
+            const userId = req.user.id;
             const img = req.files.img;
             const fileName = uuid.v4() + ".jpg"
             img.mv(path.resolve(__dirname, '..', 'static', fileName))
@@ -180,8 +181,7 @@ class DeviceController {
         
         
         const devices = await Device.findAll({
-            where: {userId: userId},
-            limit: 4
+            where: {userId: userId}
         });
 
         return res.json(devices)
@@ -202,23 +202,23 @@ class DeviceController {
      * 
      */
 // TODO - to finish this method
-    async change(req, res) {
-        try{
-        const id = req.params;
-        const {name, price, old_price, sale, category} = req.body;
-        const userId = req.user.id;
-        const {img} = req.files;
-        const fileName = uuid.v4() + ".jpg"
-        img.mv(path.resolve(__dirname, '..', 'static', fileName))
+    // async change(req, res) {
+    //     try{
+    //     const id = req.params;
+    //     const {name, price, old_price, sale, category} = req.body;
+    //     const userId = req.user.id;
+    //     const {img} = req.files;
+    //     const fileName = uuid.v4() + ".jpg"
+    //     img.mv(path.resolve(__dirname, '..', 'static', fileName))
         
-        await User.update({ lastName: "Doe" }, {where: {id: id}});
+    //     await User.update({ lastName: "Doe" }, {where: {id: id}});
 
     
-        return res.json(devices)
-    } catch (e) {
-        next(ApiError.badRequest(e.message))
-    }
-    }
+    //     return res.json(devices)
+    // } catch (e) {
+    //     next(ApiError.badRequest(e.message))
+    // }
+    // }
 
 }
 

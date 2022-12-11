@@ -1,79 +1,61 @@
 import React from 'react';
+import {useState, useEffect} from 'react';
+import { useParams } from "react-router-dom";
+import { fetchOffsetDevices } from '../http/deviceAPI'
+import Spinner from 'react-bootstrap/Spinner';
+// import Button from 'react-bootstrap/Button';
+// import 'bootstrap/dist/css/bootstrap.css';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+
 
 const ProductsList = () => {
-    let loop = [{name: 'phone', price: 29, old_price: 89, sale: 12, img: 'product1.jpg'},
-    {name: 'tablet', price: 23, old_price: 59, sale: 22, img: 'product1.jpg'},
-    {name: 'tablet', price: 23, old_price: 59, sale: 22, img: 'product1.jpg'},
-    {name: 'tablet', price: 23, old_price: 59, sale: 22, img: 'product1.jpg'}
 
-            ];
+  const [goods, setGoods] = useState();
 
-    return (
-        <>
-        
+  useEffect(() => {
+    fetchOffsetDevices().then(data => setGoods(data)).catch(e => console.log(e.message));
+  //  if(goods) console.log(goods);
+  }, [])
+  const { category, page, limit } = useParams();
 
-        <div id="content" className="col-sm-9">
-          
-
-            <div className="category-page-wrapper">
-
-              <div className="col-md-2 text-left sort-wrapper">
-                <label className="control-label" for="input-sort">Сортировать:</label>
-                <div className="sort-inner">
-                    
-                  
-                  {/* <form action="" id="myForm" method="post" style={{position: 'relative'}}>
-                  
-                <select id="input-sort" className="form-control" name="wjs">
-                  <option value="2" >Дата (Убывание)</option>
-                  <option value="1" >Дата (Возростание)</option>
-                  <option value="3" >Цена (Возростание)</option>
-                  <option value="4" >Цена (Убывание)</option>
-                </select>
-                <button type="submit" style="position: absolute; top: 3px; left: 103%;">Выбрать</button>
-              </form> */}
-
-                </div>
-              </div>
-            </div>
+const deleteItem = (id) => {
+  fetchOffsetDevices(category, page, limit=8).then(() => { alert('success')})
+}
 
 
+if(!goods) return <Spinner animation="border" className='mt-5 ml-5' />
 
-          <div className="grid-list-wrapper">
-            
-
-            {loop.map((prop) => {
-     return   <div className="product-layout product-grid col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                <div className="product-thumb">
-                <div className="image product-imageblock"><a href=""><img src={'image/product/' + prop.img} alt="iPod classNameic" title="iPod classNameic" className="img-responsive" /> </a>
-                </div>
-                <div className="caption product-detail">
-                    <h4 className="product-name"> <a href="#" title="#">{prop.name}</a> </h4>
-                    <p className="price product-price"><span className="price-old">{prop.old_price}</span> {prop.price}</p>
-                    <div className="rating">Sale: {prop.sale}%</div>
-                </div>
-                </div>
-            </div>
-})}
-
-
-        </div>
-            <div className="category-page-wrapper">
-              <div className="result-inner">Показанны ?? страниц)</div>
-              <div className="pagination-inner">
-                <ul className="pagination">
-                  
-                    
-                    <li><a href=""> Paginationn</a></li>
-                  
-                 
-                </ul>
-              </div>
-            </div>
-          </div>
-
-        </>
-    );
+            return (
+              <>
+              <div id="content" className="col-sm-9">
+                  <Container fluid>
+                              <Row>
+                                  {goods.map((prop, index) => {
+                                  return  <Col key={index} md={3}>
+                                              <Card style={{ width: '100%' }}>
+                                              <Card.Img variant="top" src={`http://localhost:5000/${prop.img}`} />
+                                              <Card.Body>
+                                                  <Card.Title>{prop.name}</Card.Title>
+                                                  <Card.Text>
+                                                  {prop.sale}
+                                                  </Card.Text>
+                                                  <Button variant="primary" onClick={(e) => deleteItem(prop.id)}>Go somewhere</Button>
+                                              </Card.Body>
+                                              </Card>
+                                          </Col>
+                                  })}
+                              </Row>
+                          </Container>
+              
+                          </div>
+              </>
+          );
 };
 
 export default ProductsList;

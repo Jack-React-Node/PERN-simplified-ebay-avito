@@ -1,6 +1,34 @@
 import React from 'react';
+import { useParams } from "react-router-dom";
+import {useState, useEffect} from 'react';
+import { fetchOneDevice } from '../http/deviceAPI'
+import Spinner from 'react-bootstrap/Spinner';
+// import Button from 'react-bootstrap/Button';
+// import 'bootstrap/dist/css/bootstrap.css';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+
 
 const ProductView = () => {
+    const { id } = useParams();
+    const [goods, setGoods] = useState();
+
+    useEffect(() => {
+        fetchOneDevice(id).then(data => setGoods(data)).catch(e => console.log(e.message));
+    //  if(goods) console.log(goods);
+    }, [])
+
+  
+  
+  if(!goods) return <Spinner animation="border" className='mt-5 ml-5' />
+
+
+
     return (
         <>
 
@@ -9,7 +37,7 @@ const ProductView = () => {
             <div className="row">
                 <div className="col-sm-6">
                     <ul className="thumbnails">
-                        <li><span className="thumbnail fancybox"><img src="image/product/product1.jpg" /></span>
+                        <li><span className="thumbnail fancybox"><img style={{width: 300}} src={`http://localhost:5000/${goods.img}`} /></span>
                         </li>
                     </ul>
                 </div>
@@ -38,62 +66,10 @@ const ProductView = () => {
                     <p className="product-desc">????</p>
                 </div>
             </div>
-                            {/* <div className="productinfo-tab">
-                                <h3 className="productblock-title">Рекомендуем также</h3>
-                                <div className="box">
-                                    <div id="related-slidertab" className="row owl-carousel product-slider">
-                                        @isset($prod)
-                                        @foreach ($prod as $prods)
-                                            
-                                        <div className="item">
-                                            <div className="product-thumb transition">
-                                                <div className="image product-imageblock"> <a href="{{ route('products.show', ['product' => $prods->id]) }}"><img src="{{ asset('/storage/' . $prods->file) }}" alt="iPod classNameic" title="iPod classNameic" className="img-responsive" /> </a></div>
-                                                <div className="caption product-detail">
-                                                    <h4 className="product-name">{{$prods->name}}</h4>
-                                                    <p className="price product-price">&#8381 {{$prods->old_price}}  <span className="price-old">{{$prods->price}}</span></p>
-                                                    <div className="rating">Sale: {{$prods->sale}}%</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        @endforeach
-                                        @endisset
-                                        
-                                    </div>
-                                </div>
-                            </div> */}
-                            
-                            
+  
 
 
-
-
-
-                {/* <div className="customtab">
-                            <h3 className="productblock-title">Вы просматривали</h3>
-                <div className="box">
-                    <div id="feature-slider" className="row owl-carousel product-slider">
-
-                        @isset($prod)
-                            @foreach ($prod as $prods)
-                        <div className="item product-slider-item">
-                            <div className="product-thumb transition">
-                                <div className="image product-imageblock">  <a href="{{ route('products.show', ['product' => $prods->id]) }}"><img src="{{ asset('/storage/' . $prods->file) }}" alt="iPod classNameic" title="iPod classNameic" className="img-responsive" /> </a></div>
-                                <div className="caption product-detail">
-                                    <h4 className="product-name">{{ $prods->name }}</h4>
-                                    <p className="price product-price">&#8381 {{ $prods->price }} <span className="price-old"> {{ $prods->old_price }}</span></p>
-                                    <div className="rating">Sale: {{ $prods->sale }}%</div>
-                                </div>
-                            </div>
-                        </div>
-                        @endforeach
-                        @endisset
-
-                    </div>
-                </div>
-            </div>  */}
-
-
-                        </div>
+        </div>
                     
       
 

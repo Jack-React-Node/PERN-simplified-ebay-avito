@@ -1,46 +1,57 @@
 import React from 'react';
+import {useState, useEffect} from 'react';
+import { fetchUserItems, deleteUserDevice } from '../http/deviceAPI'
+import Spinner from 'react-bootstrap/Spinner';
+// import Button from 'react-bootstrap/Button';
+// import 'bootstrap/dist/css/bootstrap.css';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+
 
 const AdminPanel = () => {
-    let loop = [{name: 'phone', price: 29, old_price: 89, sale: 12, img: 'product1.jpg'},
-    {name: 'tablet', price: 23, old_price: 59, sale: 22, img: 'product1.jpg'},
-    {name: 'tablet', price: 23, old_price: 59, sale: 22, img: 'product1.jpg'},
-    {name: 'tablet', price: 23, old_price: 59, sale: 22, img: 'product1.jpg'}
 
-            ];
+  const [goods, setGoods] = useState();
+
+  useEffect(() => {
+    fetchUserItems().then(data => setGoods(data)).catch(e => console.log(e.message));
+  //  if(goods) console.log(goods);
+  }, [])
+
+const deleteItem = (id) => {
+  deleteUserDevice(id).then(() => { alert('success')})
+}
+
+
+if(!goods) return <Spinner animation="border" className='mt-5 ml-5' />
+
     return (
         <>
-            
-        
         <div id="content" className="col-sm-9">
-  <div className="productinfo-tab">
-    <h3 className="productblock-title">Мои объявления  <a href=""><button className="btn btn-primary">Создать объявление</button></a>
-    </h3>
-    <div className="box">
-      <div id="related-slidertab" className="row owl-carousel product-slider">
-
-
-
-      {loop.map((prop) => {
-     return   <div className="item">
-                    <div className="product-thumb transition">
-                    <div className="image product-imageblock"> <a href=""><img src="" alt="iPod classic" title="iPod classic" className="img-responsive" /></a>
+            <Container fluid>
+                        <Row>
+                            {goods.map((prop, index) => {
+                            return  <Col key={index} md={3}>
+                                        <Card style={{ width: '100%' }}>
+                                        <Card.Img variant="top" src={`http://localhost:5000/${prop.img}`} />
+                                        <Card.Body>
+                                            <Card.Title>{prop.name}</Card.Title>
+                                            <Card.Text>
+                                            {prop.sale}
+                                            </Card.Text>
+                                            <Button variant="primary" onClick={(e) => deleteItem(prop.id)}>Go somewhere</Button>
+                                        </Card.Body>
+                                        </Card>
+                                    </Col>
+                            })}
+                        </Row>
+                    </Container>
+        
                     </div>
-                    <div className="caption product-detail">
-                        <h4 className="product-name">{prop.name}</h4>
-                        <p className="price product-price"><a href="" style={{cursor: 'pointer'}}>Редактировать </a></p>
-                        <div className="rating"><a href="" style={{cursor: 'pointer'}}> Удалить</a></div>
-                    </div>                 
-                    </div>
-                </div>
-})}
-
-
-      </div>
-    </div>
-  </div>
-</div>
-
-
         </>
     );
 };

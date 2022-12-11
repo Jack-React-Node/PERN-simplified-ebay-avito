@@ -38,7 +38,7 @@ if(!goods) return <Spinner animation="border" className='mt-5 ml-5' />
                                             <Card.Text>
                                             {prop.sale}
                                             </Card.Text>
-                                            <Button variant="primary">Go somewhere</Button>
+                                            <Button variant="primary" href={`/product/${prop.id}`}>Go somewhere</Button>
                                         </Card.Body>
                                         </Card>
                                     </Col>

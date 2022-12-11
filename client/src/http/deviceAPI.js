@@ -16,19 +16,30 @@ export const createItem = async (device) => {
     return data
 }
 
+// Done
+export const fetchUserItems = async () => {
+    const {data} = await instance.get('/device/user-devices')
+    return data
+}
 
+// Done
+export const deleteUserDevice = async (id) => {
+    const {data} = await instance.get('/device/delete-device/' + id)
+    return data
+}
 
+//Done
+export const fetchOneDevice = async (id) => {
+    const {data} = await instance.get('/device/device-view/' + id)
+    return data
+}
 
-
-
-export const fetchDevices = async (typeId, brandId, page, limit= 5) => {
-    const {data} = await instance.get('api/device', {params: {
-            typeId, brandId, page, limit
+//Done
+export const fetchOffsetDevices = async (category, page, limit = 8) => {
+    const {data} = await instance.get('/category/', {params: {
+        category, page, limit
         }})
     return data
 }
 
-export const fetchOneDevice = async (id) => {
-    const {data} = await instance.get('api/device/' + id)
-    return data
-}
+

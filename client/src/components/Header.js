@@ -32,6 +32,13 @@ const Header = observer(() => {
                           <><Nav.Item>
                           <Nav.Link onClick={logOut} >Выход</Nav.Link>
                           </Nav.Item>
+
+                          <Nav.Item>
+                            <Nav.Link href="/admin/" >Мои объявления</Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item>
+                            <Nav.Link href="/admin/add-product/" >Создать объявление</Nav.Link>
+                            </Nav.Item>
                           </>
                             :
                           <>
@@ -40,7 +47,8 @@ const Header = observer(() => {
                             </Nav.Item>
                             <Nav.Item>
                             <Nav.Link onClick={showModalRegistration} >Регистрация</Nav.Link>
-                            </Nav.Item></> }
+                            </Nav.Item>
+                            </> }
             </Nav>
       </Container>
     );
