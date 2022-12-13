@@ -67,7 +67,7 @@ class DeviceController {
         }
 
 
-        /* POST: - http://localhost:5000/api/category/:category:offset   
+        /* POST: - http://localhost:5000/api/category/:category/:page   
      * 
      * @param req.body      |   <form_input>        ->  1
      *        req.file      |   <form_input_file>   ->  0
@@ -78,17 +78,18 @@ class DeviceController {
      * 
      */
     
-        async getAll(req, res) {
+        async getAll(req, res, next) {
            try{
-           const {order} = req.body;
-            const {category, page, limit} = req.params;
-            const offset = page * limit;
+            // return res.status(401).json({tt: 34})
+        //    const {order} = req.body;
+        const { category, page } = req.params;
+            const offset = (page - 1) * 8;
             
-            const devices = await Device.findAll({
+            const devices = await Device.findAndCountAll({
                 where: {category: category},
-                order: [[order, 'DESC']], // DESC -> from hight to low
-                offset: offset,
-                limit: limit
+                order: [['name', 'DESC']], // DESC -> from hight to low
+                // offset: offset,
+                limit: 8
             });
     
      

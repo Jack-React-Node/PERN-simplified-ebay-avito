@@ -3,8 +3,11 @@ import { createItem } from '../http/deviceAPI'
 // import Axios from 'axios';
 // import FormData from 'form-data';
 
+import {observer} from "mobx-react-lite";
 
-const AdminAdd = () => {
+
+const AdminAdd = observer(() => {
+
  
        const [name, setName] = useState('');
         const [price, setPrice] = useState(0);
@@ -116,6 +119,6 @@ const AdminAdd = () => {
 
         </>
     );
-};
+});
 
 export default AdminAdd;

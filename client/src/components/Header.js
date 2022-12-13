@@ -4,9 +4,10 @@ import Container from 'react-bootstrap/esm/Container';
 
 import Nav from 'react-bootstrap/Nav';
 import {observer} from "mobx-react-lite";
-
+import { useNavigate } from "react-router-dom";
 
 const Header = observer(() => { 
+  const navigate = useNavigate();
 
     const {helpers, user} = useContext(Context)
 
@@ -21,6 +22,8 @@ const Header = observer(() => {
         user.setUser({})
         
         localStorage.removeItem('token');
+        
+        navigate("/");
     }
  
 

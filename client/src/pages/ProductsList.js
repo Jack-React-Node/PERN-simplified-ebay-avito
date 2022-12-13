@@ -12,24 +12,44 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import Pagination from 'react-bootstrap/Pagination';
 
 
 const ProductsList = () => {
 
+  const {category, page } = useParams();
   const [goods, setGoods] = useState();
+  const [counts, setCounts] = useState(0);
 
   useEffect(() => {
-    fetchOffsetDevices().then(data => setGoods(data)).catch(e => console.log(e.message));
+    fetchOffsetDevices(category, page).then(data => {
+      setGoods(data.rows)
+      setCounts(data.count)
+    }
+      ).catch(e => console.log(e.message));
   //  if(goods) console.log(goods);
   }, [])
-  const { category, page, limit } = useParams();
 
-const deleteItem = (id) => {
-  fetchOffsetDevices(category, page, limit=8).then(() => { alert('success')})
+
+
+let active = page;
+let items = [];
+for (let number = 1; number <= Math.ceil(counts/8); number++) {
+  items.push(
+    <Pagination.Item key={number} active={number === active}>
+      {number}
+    </Pagination.Item>,
+  );
 }
 
+const paginationBasic = (
+  <div>
+    <Pagination>{items}</Pagination>
+  </div>
+);
 
-if(!goods) return <Spinner animation="border" className='mt-5 ml-5' />
+
+if(!goods){ return <Spinner animation="border" className='mt-5 ml-5' />}
 
             return (
               <>
@@ -45,13 +65,14 @@ if(!goods) return <Spinner animation="border" className='mt-5 ml-5' />
                                                   <Card.Text>
                                                   {prop.sale}
                                                   </Card.Text>
-                                                  <Button variant="primary" onClick={(e) => deleteItem(prop.id)}>Go somewhere</Button>
+                                                  <Button variant="primary" >Посмотреть</Button>
                                               </Card.Body>
                                               </Card>
                                           </Col>
                                   })}
                               </Row>
                           </Container>
+                          {paginationBasic}
               
                           </div>
               </>

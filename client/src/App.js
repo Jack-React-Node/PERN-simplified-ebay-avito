@@ -44,7 +44,7 @@ const App = observer(() => {
           <Route path="/" element={<Layout />}>
               <Route index element={<Home />} />
               <Route path="product/:id" element={<ProductView />} />
-              <Route path="prod-list/:category" element={<ProductsList />} />
+              <Route path="prod-list/:category/:page" element={<ProductsList />} />
               <Route path="contacts" element={<Contacts />} />
               <Route path="*" element={<Empty />} />
             </Route>

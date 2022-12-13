@@ -35,10 +35,8 @@ export const fetchOneDevice = async (id) => {
 }
 
 //Done
-export const fetchOffsetDevices = async (category, page, limit = 8) => {
-    const {data} = await instance.get('/category/', {params: {
-        category, page, limit
-        }})
+export const fetchOffsetDevices = async (category, page = 1) => {
+    const {data} = await instance.get('/device/category/' + category + '/' + page)
     return data
 }
 

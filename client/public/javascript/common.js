@@ -72,7 +72,7 @@ $(document).ready(function() {
 		$('#grid-view').trigger('click');
 	}
 
-	$('[data-toggle=\'tooltip\']').tooltip({container: 'body'});
+	// $('[data-toggle=\'tooltip\']').tooltip({container: 'body'});
 
 	$(document).ajaxStop(function() {
 		$('[data-toggle=\'tooltip\']').tooltip({container: 'body'});

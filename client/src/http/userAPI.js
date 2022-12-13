@@ -20,7 +20,7 @@ export const check = async () => {
     localStorage.setItem('token', data.token)
     return jwt_decode(data.token)
     }
-    console.log(data);
+    // console.log(data);
     return {stop: 1}
 
 }
