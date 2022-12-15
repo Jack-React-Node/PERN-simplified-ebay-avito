@@ -14,7 +14,7 @@ const LoginPage = observer(() => {
   const show = helpers.modalLogin;
   const [mail, setMail] = useState('')
   const [password, setPassword] = useState('')
-const hideModal = () => {
+  const hideModal = () => {
   helpers.setModalLogin(false)
 }
 
